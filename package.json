@@ -1,5 +1,5 @@
 {
-  "name": "chatform-v0",
+  "name": "conversly",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -25,4 +25,4 @@
   "engines": {
     "node": ">=18.0.0"
   }
-} 
+}
