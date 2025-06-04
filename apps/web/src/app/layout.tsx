@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,10 +22,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${outfit.variable} font-sans antialiased`}>
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-          <div className="relative">{children}</div>
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+            <div className="relative">{children}</div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
