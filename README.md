@@ -24,7 +24,7 @@ A chat-style, AI-driven data-collection SaaS that turns a creator's short prompt
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/chatform-v0.git
+   git clone https://github.com/dev2703/conversly.git
    cd chatform-v0
    ```
 
