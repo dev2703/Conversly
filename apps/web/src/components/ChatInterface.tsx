@@ -11,28 +11,43 @@ interface Message {
   content: string;
 }
 
+interface PlannedStep {
+  question: string;
+  type: 'text' | 'mcq' | 'checkbox';
+  options?: string[];
+}
+
 export function ChatInterface(): JSX.Element {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent): void => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (!input.trim()) return;
+    setError(null);
 
     // Add user message
     const userMessage: Message = { role: 'user', content: input.trim() };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setLoading(true);
 
-    // TODO: Add API call to get bot response
-    // For now, just echo the message
-    setTimeout(() => {
-      const botMessage: Message = {
-        role: 'bot',
-        content: `You said: ${userMessage.content}`,
-      };
-      setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+    try {
+      const res = await fetch('/api/next-question', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history: [...messages, userMessage] }),
+      });
+      if (!res.ok) throw new Error('Failed to get next question');
+      const data: PlannedStep = await res.json();
+      setMessages((prev) => [...prev, { role: 'bot', content: data.question }]);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,6 +56,8 @@ export function ChatInterface(): JSX.Element {
         {messages.map((message, index) => (
           <ChatBubble key={index} role={message.role} content={message.content} />
         ))}
+        {loading && <ChatBubble role="bot" content="Thinking..." />}
+        {error && <div className="text-red-500">{error}</div>}
       </div>
       <form onSubmit={handleSubmit} className="border-t p-4">
         <div className="flex gap-2">
@@ -49,8 +66,9 @@ export function ChatInterface(): JSX.Element {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your message..."
             className="min-h-[60px]"
+            disabled={loading}
           />
-          <Button type="submit" className="self-end">
+          <Button type="submit" className="self-end" disabled={loading}>
             Send
           </Button>
         </div>

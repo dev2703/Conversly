@@ -1,51 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Luckiest+Guy&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 263 70% 50%;
-    --radius: 0.75rem;
+    --background: 207 13% 54%; /* muted blue/gray */
+    --foreground: 45 100% 97%; /* off-white/cream */
+    --primary: 22 100% 67%; /* soft orange */
+    --primary-foreground: 0 0% 13%; /* dark for contrast */
+    --secondary: 45 100% 97%;
+    --secondary-foreground: 207 13% 54%;
+    --card: 207 13% 54%;
+    --card-foreground: 45 100% 97%;
+    --accent: 22 100% 67%;
+    --accent-foreground: 45 100% 97%;
+    --border: 207 13% 44%;
+    --input: 207 13% 44%;
+    --ring: 22 100% 67%;
+    --radius: 1.5rem;
   }
 
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 263 70% 50%;
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 199 89% 48%;
   }
 }
 
@@ -56,15 +51,32 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Bebas Neue', 'Luckiest Guy', system-ui, sans-serif;
+    background: linear-gradient(135deg, #7B929A 0%, #A7C7E7 100%);
+    color: hsl(var(--foreground));
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', 'Luckiest Guy', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  font-weight: bold;
+}
+
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-red-500;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500;
 }
 
 .glass-effect {
-  @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.hover-lift {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
 }
 
 .animate-gradient {
@@ -82,4 +94,12 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+.button-hover {
+  @apply bg-primary text-primary-foreground rounded-full px-6 py-2 font-bold shadow-md transition-all duration-300 hover:bg-primary/80 hover:scale-105;
+}
+
+.card-hover {
+  @apply bg-card text-card-foreground rounded-xl shadow-lg border-2 border-primary/30 transition-all duration-300 hover:shadow-2xl hover:border-primary;
 } 

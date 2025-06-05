@@ -19,22 +19,22 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        sans: ['Bebas Neue', 'Luckiest Guy', 'system-ui', 'sans-serif'],
+        display: ['Bebas Neue', 'Luckiest Guy', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: '#7B929A',
+        foreground: '#FFFBEA',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: '#FF8C5A',
+          foreground: '#222222',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: '#FFFBEA',
+          foreground: '#7B929A',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -45,16 +45,16 @@ export default {
           foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: '#FF8C5A',
+          foreground: '#FFFBEA',
         },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: '#7B929A',
+          foreground: '#FFFBEA',
         },
       },
       borderRadius: {
